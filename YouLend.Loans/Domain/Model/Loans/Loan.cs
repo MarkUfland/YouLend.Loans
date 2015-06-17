@@ -8,6 +8,18 @@ namespace YouLend.Loans.Domain.Model.Loans
 {
     public class Loan
     {
-        LoadID
+        public LoanId LoanId { get; private set; }
+        public MonetaryAmount LoanAmount { get; private set; }
+
+        public Loan(LoanId loanId, MonetaryAmount loanAmount)
+        {
+            this.LoanId = loanId;
+            this.LoanAmount = loanAmount;
+        }
+
+        public void TopUpLoan(MonetaryAmount amountToTopUp)
+        {
+            this.LoanAmount = this.LoanAmount.AddMonetaryAmount( amountToTopUp );
+        }
     }
 }

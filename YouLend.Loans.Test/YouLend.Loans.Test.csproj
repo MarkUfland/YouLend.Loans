@@ -50,13 +50,25 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Domain\When_Adding_Monetary_Amounts_Together.cs" />
+    <Compile Include="Domain\When_Creating_A_New_Currency.cs" />
+    <Compile Include="Domain\When_Calling_ToString_On_A_LoadId_Object.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\" />
-    <Folder Include="Domain\" />
     <Folder Include="Infrastructure\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YouLend.Common\YouLend.Common.csproj">
+      <Project>{610a9fe1-2be7-48e4-8ce8-8e9a492660f3}</Project>
+      <Name>YouLend.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YouLend.Loans\YouLend.Loans.csproj">
+      <Project>{76754960-c599-43fa-b011-05d62385a27b}</Project>
+      <Name>YouLend.Loans</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

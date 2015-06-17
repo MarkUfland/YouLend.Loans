@@ -40,8 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\Loans\LoanApplicationService.cs" />
+    <Compile Include="Domain\Model\Currency.cs" />
     <Compile Include="Domain\Model\Loans\Loan.cs" />
-    <Compile Include="Domain\Model\Loans\LoanID.cs" />
+    <Compile Include="Domain\Model\Loans\LoanId.cs" />
+    <Compile Include="Domain\Model\MonetaryAmount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
