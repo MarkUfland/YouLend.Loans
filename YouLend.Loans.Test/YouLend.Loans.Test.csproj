@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Domain\When_Creating_A_New_Loan.cs" />
     <Compile Include="Domain\When_Adding_Monetary_Amounts_Together.cs" />
     <Compile Include="Domain\When_Creating_A_New_Currency.cs" />
     <Compile Include="Domain\When_Calling_ToString_On_A_LoadId_Object.cs" />

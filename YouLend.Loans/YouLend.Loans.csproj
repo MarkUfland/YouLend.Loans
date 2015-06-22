@@ -30,6 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,21 +48,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Loans\CreateLoanCommand.cs" />
     <Compile Include="Application\Loans\LoanApplicationService.cs" />
     <Compile Include="Domain\Model\Currency.cs" />
+    <Compile Include="Domain\Model\Loans\ILoansRepository.cs" />
     <Compile Include="Domain\Model\Loans\Loan.cs" />
     <Compile Include="Domain\Model\Loans\LoanId.cs" />
     <Compile Include="Domain\Model\MonetaryAmount.cs" />
+    <Compile Include="Ports.Adapters\Persistence\MappingFiles\LoanMappingFile.cs" />
+    <Compile Include="Ports.Adapters\Persistence\Repositories\LoansRepository.cs" />
+    <Compile Include="Ports.Adapters\Persistence\SessionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\YouLend.Common\YouLend.Common.csproj">
       <Project>{610a9fe1-2be7-48e4-8ce8-8e9a492660f3}</Project>
       <Name>YouLend.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
