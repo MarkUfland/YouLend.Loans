@@ -8,8 +8,12 @@ namespace YouLend.Loans.Domain.Model
 {
     public class Currency
     {
-        public string IsoCurrencyCode { get; private set; }
-        public string IsoCurrencyName { get; private set; }
+        public virtual string IsoCurrencyCode { get; private set; }
+        public virtual string IsoCurrencyName { get; private set; }
+
+        protected Currency()
+        {
+        }
 
         public Currency(string isoCurrencyCode, string isoCurrencyName)
         {

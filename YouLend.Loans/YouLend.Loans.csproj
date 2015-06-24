@@ -57,7 +57,6 @@
     <Compile Include="Domain\Model\MonetaryAmount.cs" />
     <Compile Include="Ports.Adapters\Persistence\MappingFiles\LoanMappingFile.cs" />
     <Compile Include="Ports.Adapters\Persistence\Repositories\LoansRepository.cs" />
-    <Compile Include="Ports.Adapters\Persistence\SessionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

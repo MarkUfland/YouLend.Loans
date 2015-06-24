@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YouLend.Common.Domain.Model;
 
 namespace YouLend.Loans.Domain.Model.Loans
 {
-    public class Loan
+    public class Loan 
     {
-        public LoanId LoanId { get; private set; }
-        public MonetaryAmount LoanAmount { get; private set; }
+        public virtual LoanId LoanId { get; protected set; }
+        public virtual MonetaryAmount LoanAmount { get; protected set; }
 
 
         protected Loan()
@@ -22,7 +23,7 @@ namespace YouLend.Loans.Domain.Model.Loans
             this.LoanAmount = loanAmount;
         }
 
-        public void TopUpLoan(MonetaryAmount amountToTopUp)
+        public virtual void TopUpLoan(MonetaryAmount amountToTopUp)
         {
             this.LoanAmount = this.LoanAmount.AddMonetaryAmount( amountToTopUp );
         }

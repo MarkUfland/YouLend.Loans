@@ -5,23 +5,24 @@ using NHibernate.Dialect;
 using NHibernate.Driver;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using YouLend.Loans.Ports.Adapters.Persistence.Repositories;
 
-namespace YouLend.Loans.Ports.Adapters.Persistence
+namespace YouLend.Common.Ports.Adapters.Persistence.NHibernatePersistence
 
 {
     /// <summary>
     /// This class is responsible for setting up the NHibernate session
     /// </summary>
-    internal class SessionHelper
+    public class SessionHelper
     {
         /// <summary>
         /// A variable to hold the NHibernate configuration object 
         /// </summary>
-        private static Configuration cfg;
+        private static  NHibernate.Cfg.Configuration cfg;
 
         /// <summary>
         /// A variable to hold the NHibernate session factory object
@@ -45,50 +46,63 @@ namespace YouLend.Loans.Ports.Adapters.Persistence
 
             #region Using code based configuration and mapping files
 
-            try
-            {
-                cfg = new Configuration();
-
-                cfg.DataBaseIntegration(x =>
-                {
-                    x.ConnectionString = @"Data Source=YLWIN81DEV1\SQLEXPRESS;Initial Catalog=YouLend.Loans;Integrated Security=True";
-                    x.Dialect<MsSql2012Dialect>();
-                    x.Driver<SqlClientDriver>();
-                    x.LogSqlInConsole = true;
-                });
-
-                sessionFactory = Fluently.Configure(cfg)
-                   .Mappings(
-                      m => m.FluentMappings.AddFromAssemblyOf<LoansRepository>())
-                   .BuildSessionFactory();
-
-                //cfg.AddAssembly(Assembly.GetExecutingAssembly());
-
-                sessionFactory = cfg.BuildSessionFactory();
-            }
-            catch (Exception ex)
-            {
-                int a = 1;
-            }
-
-            #endregion
-
-            #region Using Fluent NHibernate for mapping and the configuration class to configure from app settings
-
             //try
             //{
             //    cfg = new Configuration();
 
-            //    cfg.Configure(); // read config default style
+            //    var a = AppDomain.CurrentDomain.GetAssemblies();
+
+            //    cfg.DataBaseIntegration(x =>
+            //    {
+            //        x.ConnectionString = @"Data Source=YLWIN81DEV1\SQLEXPRESS;Initial Catalog=YouLend.Loans;Integrated Security=True";
+            //        x.Dialect<MsSql2012Dialect>();
+            //        x.Driver<SqlClientDriver>();
+            //        x.LogSqlInConsole = true;
+            //    });
+
             //    sessionFactory = Fluently.Configure(cfg)
-            //        .Mappings(
-            //           m => m.FluentMappings.AddFromAssemblyOf<SessionHelper>())
-            //        .BuildSessionFactory();
+            //       .Mappings(
+            //        //m => m.FluentMappings.AddFromAssemblyOf<LoansRepository>())
+            //          m => m.FluentMappings.AddFromAssembly(mappingAssembly))
+            //       .BuildSessionFactory();
+
+            //    //cfg.AddAssembly(Assembly.GetExecutingAssembly());
+
+            //    sessionFactory = cfg.BuildSessionFactory();
             //}
             //catch (Exception ex)
             //{
             //    int a = 1;
             //}
+
+            #endregion
+
+            #region Using Fluent NHibernate for mapping and the configuration class to configure from app settings
+
+            try
+            {
+                cfg = new  NHibernate.Cfg.Configuration();
+
+                cfg.Configure(); // read config default style
+
+                var NHibernateMappingAssemblyName = ConfigurationManager.AppSettings["NHibernateMappingAssembly"];
+
+                var NhibernateMappingAssembly = AppDomain
+                                                    .CurrentDomain
+                                                    .GetAssemblies()
+                                                    .Where(a => a.FullName.Substring(0,a.FullName.IndexOf(',')) == NHibernateMappingAssemblyName)
+                                                    .First();
+
+
+                sessionFactory = Fluently.Configure(cfg)
+                    .Mappings(
+                       m => m.FluentMappings.AddFromAssembly(NhibernateMappingAssembly))
+                    .BuildSessionFactory();
+            }
+            catch (Exception ex)
+            {
+                int a = 1;
+            }
             #endregion
 
             #region Using Fluent NHibernate for mapping and configuration with a connection string for app settings
@@ -123,6 +137,7 @@ namespace YouLend.Loans.Ports.Adapters.Persistence
         /// <returns>An object that implements the ISession interface</returns>
         public static ISession GetNewSession()
         {
+            
             return sessionFactory.OpenSession();
         }
     }

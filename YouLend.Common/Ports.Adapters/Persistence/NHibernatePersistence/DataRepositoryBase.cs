@@ -1,12 +1,16 @@
 ﻿using NHibernate;
+using NHibernate.Linq;
 using YouLend.Common.Ports.Adapters.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
+using YouLend.Common.Ports.Adapters.Persistence.NHibernatePersistence;
+using System.Reflection;
 
-namespace YouLend.Common.Ports.Adapters.Persistence.NHibernate
+namespace YouLend.Common.Ports.Adapters.Persistence.NHibernatePersistence
 {
  public abstract class DataRepositoryBase<T> : IDataRepository<T>
                  where T : class
@@ -16,6 +20,7 @@ namespace YouLend.Common.Ports.Adapters.Persistence.NHibernate
         /// A variable to hold the NHibernate session object
         /// </summary>
         private ISession session;
+        protected Assembly mappingAssembly;
 
       
 
@@ -96,12 +101,12 @@ namespace YouLend.Common.Ports.Adapters.Persistence.NHibernate
             
         }
 
-        protected IList<T> GetByCriteria<T>(Expression<Func<T, bool>> query) where T : class, new()
+        protected IList<T> GetByCriteria(Expression<Func<T, bool>> query)
         {
-            return GetByCriteria<T>(query, 0, 0);
+            return GetByCriteria(query, 0, 0);
         }
 
-        protected IList<T> GetByCriteria<T>(Expression<Func<T, bool>> query, int pageIndex, int pageSize) where T : class, new()
+        protected IList<T> GetByCriteria(Expression<Func<T, bool>> query, int pageIndex, int pageSize)
         {
             try
             {
@@ -161,7 +166,16 @@ namespace YouLend.Common.Ports.Adapters.Persistence.NHibernate
 
             if (!this.IsInTransaction)
             {
-                this.session.Flush();
+                try
+                {
+                    this.session.Flush();
+
+                }
+                catch(Exception ex)
+                {
+                    int a = 1;
+                }
+                
             }
         }
 

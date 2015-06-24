@@ -21,8 +21,17 @@ namespace YouLend.Common.Ports.Adapters.Persistence
         {
             var queryObject = CreateLambdaObject<T>();
 
+            Expression queryParameterFieldName = queryObject;
+
             //The field name bit of the lambda expression e.g. o.PartyId
-            Expression queryParameterFieldName = Expression.PropertyOrField(queryObject, fieldName);
+            foreach (var part in fieldName.Split('.'))
+            {
+                // We now want to combine the property name with the member expression to create the full expression i.e. o.Age. This is the left side element
+                queryParameterFieldName = Expression.PropertyOrField(queryParameterFieldName, part);
+            }
+
+            
+            //Expression queryParameterFieldName = Expression.PropertyOrField(queryObject, fieldName);
 
             //The value to search for bit of the lambda expression e.g. 1
             ConstantExpression queryParameterFieldValue = Expression.Constant(value, value.GetType());

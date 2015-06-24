@@ -9,7 +9,11 @@ namespace YouLend.Loans.Domain.Model.Loans
 {
     public class LoanId : ValueObject<LoanId>
     {
-        public Guid Id { get; private set; }
+        public virtual Guid Id { get; private set; }
+
+        protected LoanId()
+        {
+        }
 
         public LoanId(Guid id)
         {

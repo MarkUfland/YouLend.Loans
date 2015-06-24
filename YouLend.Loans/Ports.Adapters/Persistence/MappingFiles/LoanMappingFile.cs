@@ -15,10 +15,13 @@ namespace YouLend.Loans.Ports.Adapters.Persistence.MappingFiles
         {
             this.Table("Loans");
 
-            this.Component(c => c.LoanId, m =>
-            {
-                m.Map(x => x.Id).Column("LoanId");
-            });
+            CompositeId().ComponentCompositeIdentifier<LoanId>(pkk => pkk.LoanId)
+                                .KeyProperty(x => x.LoanId.Id, "LoanId");
+                          
+            //this.Component(c => c.LoanId, m =>
+            //{
+            //    m.Map(x => x.Id).Column("LoanId");
+            //});
 
             this.Component(c => c.LoanAmount, m =>
             {

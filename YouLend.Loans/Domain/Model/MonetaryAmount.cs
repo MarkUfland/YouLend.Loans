@@ -12,19 +12,23 @@ namespace YouLend.Loans.Domain.Model
         private decimal amount;
         private Currency currency;
 
+        protected MonetaryAmount()
+        {
+        }
+
         public MonetaryAmount(decimal amount, Currency currency)
         {
             this.amount = amount;
             this.currency = currency;
         }
 
-        public decimal Amount
+        public virtual decimal Amount
         {
             get { return amount; }
             private set { amount = value; }
         }
 
-        public Currency Currency
+        public virtual Currency Currency
         {
             get { return currency; }
             private set { currency = value; }
