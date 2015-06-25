@@ -13,10 +13,14 @@ namespace YouLend.Loans.Test.Ports.Adapters.Persistence
         public void Then_A_Loan_Is_Added()
         {
             var loanAmount = new MonetaryAmount(1000, new Currency("USD", "Dollars"));
-            var loan = Loan.CreateNewLoan(loanAmount);
             var loanRepository = new LoansRepository();
+            var loanId = loanRepository.GetNextIdentity();
+            var loan = Loan.CreateNewLoan(loanId,loanAmount);
+            var anotherLoanId = loanRepository.GetNextIdentity();
+            var anotherLoan = Loan.CreateNewLoan(anotherLoanId, loanAmount);
 
             loanRepository.Add(loan);
+            loanRepository.Add(anotherLoan);
 
             var expectedLoan = loanRepository.GetLoanByLoanId(loan.LoanId);
 

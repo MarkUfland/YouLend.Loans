@@ -21,7 +21,8 @@ namespace YouLend.Loans.Application.Loans
         {
             var currency = new Currency(createLoanCommand.CurrencyISOCode, "pls fix this");
             var loanAmount = new MonetaryAmount( createLoanCommand.Amount, currency );
-            var loan = Loan.CreateNewLoan(loanAmount);
+            var loanId = loansRepository.GetNextIdentity();
+            var loan = Loan.CreateNewLoan(loanId,loanAmount);
             
             this.loansRepository.Save(loan);
             // Raise event to say loan created

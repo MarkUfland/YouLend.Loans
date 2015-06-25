@@ -53,6 +53,7 @@
     <Compile Include="Domain\Model\Currency.cs" />
     <Compile Include="Domain\Model\Loans\ILoansRepository.cs" />
     <Compile Include="Domain\Model\Loans\Loan.cs" />
+    <Compile Include="Domain\Model\Loans\LoanCreatedEvent.cs" />
     <Compile Include="Domain\Model\Loans\LoanId.cs" />
     <Compile Include="Domain\Model\MonetaryAmount.cs" />
     <Compile Include="Ports.Adapters\Persistence\MappingFiles\LoanMappingFile.cs" />

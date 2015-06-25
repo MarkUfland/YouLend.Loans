@@ -39,6 +39,9 @@
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -49,8 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain.Model\DomainEventPublisher.cs" />
     <Compile Include="Domain.Model\Entity.cs" />
     <Compile Include="Domain.Model\ValueObject.cs" />
+    <Compile Include="Events\IDomainEvent.cs" />
+    <Compile Include="Events\IHandle.cs" />
+    <Compile Include="Ports.Adapters\Persistence\GuidExtensions.cs" />
     <Compile Include="Ports.Adapters\Persistence\IDataRepository.cs" />
     <Compile Include="Ports.Adapters\Persistence\IDataRepositoryFactory.cs" />
     <Compile Include="Ports.Adapters\Persistence\LambdaHelper.cs" />

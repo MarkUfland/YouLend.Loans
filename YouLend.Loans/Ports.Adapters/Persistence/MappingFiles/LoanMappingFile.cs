@@ -15,7 +15,7 @@ namespace YouLend.Loans.Ports.Adapters.Persistence.MappingFiles
         {
             this.Table("Loans");
 
-            CompositeId().ComponentCompositeIdentifier<LoanId>(pkk => pkk.LoanId)
+            this.CompositeId().ComponentCompositeIdentifier<LoanId>(pkk => pkk.LoanId)
                                 .KeyProperty(x => x.LoanId.Id, "LoanId");
                           
             //this.Component(c => c.LoanId, m =>

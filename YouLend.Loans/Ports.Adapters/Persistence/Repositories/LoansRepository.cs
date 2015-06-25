@@ -31,7 +31,7 @@ namespace YouLend.Loans.Ports.Adapters.Persistence.Repositories
 
         public LoanId GetNextIdentity()
         {
-            return new LoanId(Guid.NewGuid());
+            return new LoanId(Guid.NewGuid().GetAsGuidComb());
         }
     }
 }

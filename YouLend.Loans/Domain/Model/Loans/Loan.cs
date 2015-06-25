@@ -28,10 +28,11 @@ namespace YouLend.Loans.Domain.Model.Loans
             this.LoanAmount = this.LoanAmount.AddMonetaryAmount( amountToTopUp );
         }
 
-        public static Loan CreateNewLoan(MonetaryAmount loanAmount)
+        public static Loan CreateNewLoan(LoanId loanId, MonetaryAmount loanAmount)
         {
-            var loanId = new LoanId(Guid.NewGuid());
             var loan = new Loan(loanId, loanAmount);
+            var loanCreatedEvent = new LoanCreatedEvent(loanId.Id, loanAmount.Amount);
+            DomainEventPublisher.Raise<LoanCreatedEvent>(loanCreatedEvent);
 
             return loan;
         }
