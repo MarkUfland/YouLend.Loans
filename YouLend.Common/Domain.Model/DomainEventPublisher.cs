@@ -36,14 +36,17 @@ namespace YouLend.Common.Domain.Model
 
         public static void Raise<T>(T args) where T : IDomainEvent
         {
-            foreach (var handler in Container.GetAll<IHandle<T>>())
+            if (Guard.IsNotNull(Container))
             {
-                handler.Handle(args);
-            }
+                foreach (var handler in Container.GetAll<IHandle<T>>())
+                {
+                    handler.Handle(args);
+                }
 
-            foreach (var handler in Container.GetAll<IHandle<IDomainEvent>>())
-            {
-                handler.Handle(args);
+                foreach (var handler in Container.GetAll<IHandle<IDomainEvent>>())
+                {
+                    handler.Handle(args);
+                }
             }
 
             if (actions != null)

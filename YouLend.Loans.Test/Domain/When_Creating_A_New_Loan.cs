@@ -29,7 +29,13 @@ namespace YouLend.Loans.Test.Domain
                                                                     newLoanId = l.LoanId; 
                                                                     newLoanAmount = l.Amount; 
                                                                  });
-        }
 
+            var loanAmount = new MonetaryAmount(1000, new Currency("GBP", "British Pounds"));
+            var loanId = new LoanId(Guid.NewGuid().GetAsGuidComb());
+            var loan = Loan.CreateNewLoan(loanId, loanAmount);
+
+            Assert.AreEqual(loan.LoanId.Id, newLoanId);
+            Assert.AreEqual(loan.LoanAmount.Amount, newLoanAmount);
+        }
     }
 }

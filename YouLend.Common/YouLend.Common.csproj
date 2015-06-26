@@ -36,6 +36,10 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
@@ -54,9 +58,13 @@
   <ItemGroup>
     <Compile Include="Domain.Model\DomainEventPublisher.cs" />
     <Compile Include="Domain.Model\Entity.cs" />
+    <Compile Include="Domain.Model\Guard.cs" />
     <Compile Include="Domain.Model\ValueObject.cs" />
+    <Compile Include="Events\EventSerialiser.cs" />
     <Compile Include="Events\IDomainEvent.cs" />
+    <Compile Include="Events\IEventRepository.cs" />
     <Compile Include="Events\IHandle.cs" />
+    <Compile Include="Events\StoredEvent.cs" />
     <Compile Include="Ports.Adapters\Persistence\GuidExtensions.cs" />
     <Compile Include="Ports.Adapters\Persistence\IDataRepository.cs" />
     <Compile Include="Ports.Adapters\Persistence\IDataRepositoryFactory.cs" />
