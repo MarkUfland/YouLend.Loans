@@ -17,8 +17,12 @@ namespace YouLend.Common.Ports.Adapters.Persistence.NHibernatePersistence
     /// <summary>
     /// This class is responsible for setting up the NHibernate session
     /// </summary>
+    /// 
     public class SessionHelper
     {
+        [ThreadStatic]
+        private static ISession session;
+
         /// <summary>
         /// A variable to hold the NHibernate configuration object 
         /// </summary>
@@ -137,8 +141,10 @@ namespace YouLend.Common.Ports.Adapters.Persistence.NHibernatePersistence
         /// <returns>An object that implements the ISession interface</returns>
         public static ISession GetNewSession()
         {
-            
-            return sessionFactory.OpenSession();
+            if (session == null)
+                session = sessionFactory.OpenSession();
+
+            return session;
         }
     }
 

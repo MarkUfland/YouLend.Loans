@@ -60,6 +60,7 @@
     <Compile Include="Domain\When_Adding_Monetary_Amounts_Together.cs" />
     <Compile Include="Domain\When_Creating_A_New_Currency.cs" />
     <Compile Include="Domain\When_Calling_ToString_On_A_LoadId_Object.cs" />
+    <Compile Include="Ports.Adapters\Notifications\When_Retrieving_Events.cs" />
     <Compile Include="Ports.Adapters\Persistence\When_Calling_The_Add_Method_On_The_LoansRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,6 +6,7 @@ using YouLend.Common.Ports.Adapters.Persistence;
 using Ninject;
 using YouLend.Loans.Ports.Adapters.IOC;
 using YouLend.Common.Domain.Model;
+using YouLend.Loans.Application.Loans;
 
 namespace YouLend.Loans.Test.Application
 {
@@ -26,5 +27,22 @@ namespace YouLend.Loans.Test.Application
             var loan = Loan.CreateNewLoan(loanId, loanAmount);
 
         }
+
+        [TestMethod]
+        public void Then_The_Loan_Is_Created_In_The_Database()
+        {
+            var kernel = new StandardKernel();
+
+            kernel.Load<ApplicationIOCModule>();
+            kernel.Load<DataAccessIOCModule>();
+
+            DomainEventPublisher.Container = kernel;
+
+            var loanApplicationService = kernel.Get<LoanApplicationService>();
+            var createLoanCommand = new CreateLoanCommand() { Amount = 999m, CurrencyISOCode = "GBP", PartyId = Guid.NewGuid() };
+            loanApplicationService.CreateLoan(createLoanCommand);
+
+        }
+
     }
 }

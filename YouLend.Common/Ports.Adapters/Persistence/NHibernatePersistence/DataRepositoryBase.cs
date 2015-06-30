@@ -19,8 +19,7 @@ namespace YouLend.Common.Ports.Adapters.Persistence.NHibernatePersistence
         /// <summary>
         /// A variable to hold the NHibernate session object
         /// </summary>
-        private ISession session;
-        protected Assembly mappingAssembly;
+        protected ISession session;
 
       
 
@@ -213,7 +212,16 @@ namespace YouLend.Common.Ports.Adapters.Persistence.NHibernatePersistence
 
             if (!this.IsInTransaction)
             {
-                this.session.Flush();
+                try
+                {
+                    this.session.Flush();
+                }
+
+
+                catch (Exception e)
+                {
+                    int x = 0;
+                }
             }
         }
 

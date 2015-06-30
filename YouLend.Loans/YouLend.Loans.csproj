@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -43,8 +46,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject.Extensions.Factory">
+      <HintPath>..\packages\Ninject.Extensions.Factory.3.2.1.0\lib\net45-full\Ninject.Extensions.Factory.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +71,7 @@
     <Compile Include="Domain\Model\Loans\LoanId.cs" />
     <Compile Include="Domain\Model\MonetaryAmount.cs" />
     <Compile Include="Ports.Adapters\IOC\ApplicationIOCModule.cs" />
+    <Compile Include="Ports.Adapters\IOC\DataAccessIOCModule.cs" />
     <Compile Include="Ports.Adapters\Persistence\MappingFiles\LoanMappingFile.cs" />
     <Compile Include="Ports.Adapters\Persistence\MappingFiles\StoredEventMapper.cs" />
     <Compile Include="Ports.Adapters\Persistence\Repositories\LoansRepository.cs" />

@@ -18,6 +18,7 @@ namespace YouLend.Loans.Ports.Adapters.Persistence.MappingFiles
             this.Map(x => x.OccurredOn);
             this.Map(x => x.EventBody);
             this.Map(x => x.TypeName);
+            this.Map(x => x.Published);
 
         }
     }
