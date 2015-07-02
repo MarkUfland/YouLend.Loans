@@ -9,5 +9,7 @@ namespace YouLend.Common.Events
 {
     public interface IEventRepository : IDataRepository<StoredEvent>
     {
+        IList<StoredEvent> GetUnpublishedEvents();
+        void UpdatePublishedEvents(IList<StoredEvent> events);
     }
 }
