@@ -79,6 +79,10 @@
       <Project>{610a9fe1-2be7-48e4-8ce8-8e9a492660f3}</Project>
       <Name>YouLend.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\YouLend.Loans.Messages\YouLend.Loans.Messages.csproj">
+      <Project>{cfef1d27-8b3d-43ed-9006-7581f804d620}</Project>
+      <Name>YouLend.Loans.Messages</Name>
+    </ProjectReference>
     <ProjectReference Include="..\YouLend.Loans\YouLend.Loans.csproj">
       <Project>{76754960-c599-43fa-b011-05d62385a27b}</Project>
       <Name>YouLend.Loans</Name>

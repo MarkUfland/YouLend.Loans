@@ -49,6 +49,15 @@
     <Reference Include="Ninject.Extensions.Factory">
       <HintPath>..\packages\Ninject.Extensions.Factory.3.2.1.0\lib\net45-full\Ninject.Extensions.Factory.dll</HintPath>
     </Reference>
+    <Reference Include="Shuttle.Core.Infrastructure">
+      <HintPath>..\packages\shuttle-core-infrastructure.3.1.5\lib\net45-full\Shuttle.Core.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Shuttle.ESB.Core">
+      <HintPath>..\packages\shuttle-esb-core.3.6.3\lib\net45-full\Shuttle.ESB.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Shuttle.ESB.Msmq">
+      <HintPath>..\packages\shuttle-esb-msmq.3.4.2\lib\net45-full\Shuttle.ESB.Msmq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
@@ -60,6 +69,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\AllEventsHandler.cs" />
+    <Compile Include="Ports.Adapters\Notifications\EventMappers\IExternalMessageMapper.cs" />
+    <Compile Include="Ports.Adapters\Notifications\EventMappers\LoanCreatedEventMapper.cs" />
     <Compile Include="Application\Events\EventRepository.cs" />
     <Compile Include="Application\Loans\CreateLoanCommand.cs" />
     <Compile Include="Application\Loans\LoanApplicationService.cs" />
@@ -72,6 +83,9 @@
     <Compile Include="Domain\Model\MonetaryAmount.cs" />
     <Compile Include="Ports.Adapters\IOC\ApplicationIOCModule.cs" />
     <Compile Include="Ports.Adapters\IOC\DataAccessIOCModule.cs" />
+    <Compile Include="Ports.Adapters\Notifications\IMessagePublisher.cs" />
+    <Compile Include="Ports.Adapters\Notifications\MessagePublisher.cs" />
+    <Compile Include="Ports.Adapters\Notifications\NotificationsReader.cs" />
     <Compile Include="Ports.Adapters\Persistence\MappingFiles\LoanMappingFile.cs" />
     <Compile Include="Ports.Adapters\Persistence\MappingFiles\StoredEventMapper.cs" />
     <Compile Include="Ports.Adapters\Persistence\Repositories\LoansRepository.cs" />
@@ -82,6 +96,10 @@
     <ProjectReference Include="..\YouLend.Common\YouLend.Common.csproj">
       <Project>{610a9fe1-2be7-48e4-8ce8-8e9a492660f3}</Project>
       <Name>YouLend.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YouLend.Loans.Messages\YouLend.Loans.Messages.csproj">
+      <Project>{cfef1d27-8b3d-43ed-9006-7581f804d620}</Project>
+      <Name>YouLend.Loans.Messages</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
