@@ -30,7 +30,7 @@ namespace YouLend.Loans.Ports.Adapters.Notifications
                     storedEvent.Published = true;
                 }
 
-                catch (Exception)
+                catch (Exception ex)
                 {
                 }
             }

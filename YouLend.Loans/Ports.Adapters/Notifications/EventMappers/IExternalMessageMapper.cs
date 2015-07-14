@@ -13,7 +13,7 @@ namespace YouLend.Loans.Ports.Adapters.Notifications.EventMappers
 
     public interface IExternalMessageMapper<T> : IExternalMessageMapper
     {
-        public T Map(StoredEvent storedEvent);
+        T Map(StoredEvent storedEvent);
     }
 
 }
